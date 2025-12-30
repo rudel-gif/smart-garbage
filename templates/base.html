@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flask Authentication</title>
+    <style>
+        nav {
+            background: #FFFFFF;
+            padding: 15px 20px;
+            border-bottom: 1px solid #E4EDE1;
+        }
+
+        .nav-bar {
+            width: 90%;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo h2 {
+            color: #1ca949;
+            font-weight: 600;
+        }
+
+        /* Styled Link Button */
+        .button {
+            font-size: 16px;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 20px;
+            border: 1.5px solid #2E7D32;
+            background: transparent;
+            cursor: pointer;
+            color: #2E7D32;
+            margin-left: 10px;
+            transition: 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .button:hover {
+            background-color: #2E7D32;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <nav>
+        <div class="nav-bar">
+            <div class="logo">
+                <h2>Waste Management</h2>
+            </div>
+
+            <div class="nav-signin">
+                <a class="button" href="{{ url_for('home') }}">Login</a>
+
+                <!-- Logout button only if user is logged in -->
+                {% if session.get('user') %}
+                <a class="button" href="{{ url_for('logout') }}">Logout</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+</header>
+<!-- Page content -->
+{% block body%}
+
+{% endblock %}
+
+</body>
+</html>

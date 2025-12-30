@@ -1,0 +1,205 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tasks Page</title>
+    <style>body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f5f5f5;
+}
+
+/* HEADER */
+.header {
+    background: #ff6f2f;
+    padding: 25px;
+    color: white;
+    font-size: 22px;
+    text-align: left;
+    font-weight: bold;
+    border-bottom-left-radius: 25px;
+        border-bottom-right-radius: 25px;
+}
+
+/* TABS */
+.tabs {
+    display: flex;
+    background: white;
+    border-bottom: 1px solid #ddd;
+}
+
+.tab {
+    flex: 1;
+    text-align: center;
+    padding: 12px;
+    font-size: 17px;
+    color: #888;
+}
+
+.tab.active {
+    color: #ff6f2f;
+    border-bottom: 3px solid #ff6f2f;
+    font-weight: bold;
+}
+
+/* CARD CONTAINER */
+.card {
+    width: 92%;
+    margin: 15px auto;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0px 3px 10px rgba(0,0,0,0.15);
+    overflow: hidden;
+}
+
+.task-img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+/* CARD BODY */
+.card-body {
+    padding: 15px;
+}
+
+.status {
+    background: orange;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    color: white;
+    font-weight: bold;
+}
+
+.name {
+    margin: 10px 0 5px;
+    font-size: 20px;
+}
+
+.info {
+    margin: 4px 0;
+    color: #555;
+}
+
+/* BUTTONS */
+.btn-row {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.nav-btn {
+    flex: 1;
+    padding: 10px;
+    margin-right: 8px;
+    background: #1877f2;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.call-btn {
+    flex: 1;
+    padding: 10px;
+    background: #2ecc71;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.accept-btn {
+    width: 100%;
+    padding: 12px;
+    margin-top: 12px;
+    background: #ff6f2f;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+ /* Bottom Navigation */
+    .bottom-nav {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        background: white;
+        padding: 10px 0;
+        box-shadow: 0 -1px 5px rgba(0,0,0,0.1);
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .nav-item {
+        text-align: center;
+        font-size: 22px;
+        color: #777;
+    }
+
+    .nav-item-active {
+        color: #15bc52;
+        font-weight: bold;
+    }
+</style>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+        <h2>Tasks</h2>
+    </header>
+
+    <!-- TAB BAR -->
+   <div class="tabs">
+    <a href="{{ url_for('tasks', tab='pending') }}"
+       class="tab {% if active_tab == 'pending' %}active{% endif %}">
+        Pending
+    </a>
+
+    <a href="{{ url_for('tasks', tab='mytasks') }}"
+       class="tab {% if active_tab == 'mytasks' %}active{% endif %}">
+        My Tasks
+    </a>
+
+    <a href="{{ url_for('tasks', tab='collected') }}"
+       class="tab {% if active_tab == 'collected' %}active{% endif %}">
+        Collected
+    </a>
+</div>
+
+
+    <!-- TASK CARD -->
+<div class="card">
+    <div class="card-body">
+        <span class="status">{{ task.status|upper }}</span>
+        <h3 class="name">{{ task.name }}</h3>
+        <p class="info">📞 {{ task.phone }}</p>
+        <p class="info">📍 {{ task.location }}</p>
+        <p class="info">⏰ {{ task.created_at }}</p>
+
+        <div class="btn-row">
+            <button class="nav-btn">🧭 Navigate</button>
+            <button class="call-btn">📞 Call</button>
+        </div>
+            <form method="POST" action="{{ url_for('accept_task', task_id=task.id) }}">
+                <button class="accept-btn">✔ Accept Task</button>
+            </form>
+            <form method="POST" action="{{ url_for('complete_task', task_id=task.id) }}">
+                <button class="accept-btn">✔ Mark as Collected</button>
+            </form>
+    </div>
+</div>
+<p style="text-align:center;margin-top:20px;">No tasks found</p>
+    <!-- BOTTOM NAVBAR -->
+   <div class="bottom-nav">
+        <div class="nav-item"><a href="index.html">Home</a></div>
+        <div class="nav-item"><a href="tasks.html">My_Tasks</a></div>
+        <div class="nav-item"><a href="collected.html">Map</a></div>
+        <div class="nav-item"><a href="profile.html">Profile</a></div>
+    </div>
+
+</body>

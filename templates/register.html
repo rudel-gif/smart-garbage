@@ -1,0 +1,155 @@
+<title>Collector Registration</title>
+
+<style>
+    body {
+        font-family: Arial;
+        background: #F5F6D8;
+        margin: 0;
+    }
+    nav {
+    background: #FFFFFF;
+    padding: 15px 0;
+    border-bottom: 1px solid #E4EDE1;
+}
+
+.nav-bar {
+    width: 90%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo h2 {
+    color: #1ca949;
+    font-weight: 600;
+}
+
+.nav-signin .button {
+    font-size:16px;
+    font-weight:500;
+    padding: 8px 16px;
+    border-radius: 20px;
+    border: 1.5px solid #2E7D32;
+    background: transparent;
+    cursor: pointer;
+    color: #2E7D32;
+    margin-left: 10px;
+    transition: 0.3s ease;
+}
+
+.nav-signin .button:hover {
+    opacity: 1;
+    background-color:#2E7D32;
+    color:#fff;
+}
+    .container {
+        width: 90%; max-width: 450px;
+        margin: 40px auto; background: white;
+        padding: 25px;
+        border-radius: 15px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    label {
+        font-weight: bold;
+        margin-top: 12px;
+        display: block;
+    }
+    input, textarea, select {
+        width: 100%; padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        margin-top: 5px;
+    }
+    textarea { height: 70px; resize: none; }
+    .error {
+        color: rgb(178, 221, 170);
+        font-size: 13px;
+        margin-top: 3px;
+    }
+    .btn {
+        width: 100%; padding: 12px; margin-top: 20px;
+        background: #23b709; color: white;
+        border: none; border-radius: 8px;
+        cursor: pointer; font-size: 16px;
+    }
+</style>
+
+
+    <nav>
+        <div class="nav-bar">
+            <div class="logo">
+                <h2>Waste Management</h2>
+            </div>
+            <div class="nav-signin">
+                <button class="button"><a href="login.html">Login</a></button>
+                <button class="button"><a href="register.html">Sign Up</a></button>
+            </div>
+        </div>
+    </nav>
+
+<div class="container">
+    <h2 style="text-align:center; color:#23b709;">Collector Registration</h2>
+
+    <form action="/register" method="post">
+
+        <label>Name</label>
+        <div class="error" id="nameError"></div>
+        <input type="text" id="name" name="name" placeholder="Enter your name"
+       required minlength="3" 
+       pattern="[A-Za-z ]+"
+       title="Name must be at least 3 letters and contain only alphabets.">
+
+        <label>Phone Number</label>
+        <input type="text" id="phone" name="phone" placeholder="+91-8734567890"
+       required minlength="10" maxlength="10"
+       pattern="[0-9]{10}"
+       title="Enter a valid 10-digit phone number.">
+
+        <label>Vehicle Number</label>
+        <input type="text" id="vehicle_no" name="vehicle_no"
+       required minlength="10" maxlength="10"
+       pattern="[A-Z]{2}[0-9]{2}[A-Z]{2}[0-9]{4}"
+       title="Format must be MH12AB1234.">
+
+        <label>Address</label>
+        <input type="text" id="address" name="address"
+       required minlength="5"
+       title="Enter a proper address (minimum 5 characters).">
+
+
+        <label>Email</label>
+        <input type="email" id="email" name="email" placeholder="abcd123@gmail.com"
+       required
+       pattern="[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+       title="Enter a valid email address.">
+     
+
+        <label>Select Area</label>
+        
+        <select id="area" name="area" required title="Please select an area.">
+         <option value="">Select Area</option>
+         <option value="Shree nagar">Shree Nagar </option>
+         <option value="Bhagya nagar">Bhagya Nagar</option>
+          <option value="Shivaji Nagar">Shivaji Nagar</option>
+        </select>
+        
+
+        <label>Password</label>
+        <input type="password" id="password" name="password"
+       required minlength="6"
+       title="Password must be at least 6 characters.in which one capital letter and special character and some numbers ">
+
+
+        <label>Confirm Password</label>
+        <input type="password" id="confirm_password" name="confirm_password"
+       required minlength="6"
+       title="Confirm password must match the password.">
+
+        
+       <button class="btn" type="submit">Register</button>
+        
+        
+    </form>
+    
+</div>

@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% block body %}
+
+<title>Collected Tasks</title>
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #f5f5f5;
+    }
+
+    .card {
+        background: white;
+        border-radius: 10px;
+        margin: 15px;
+        overflow: hidden;
+        box-shadow: 0 2px 6px #aaa;
+    }
+
+    .card-body {
+        padding: 12px;
+    }
+
+    .status {
+        background: #4caf50;
+        color: white;
+        padding: 4px 8px;
+        border-radius: 12px;
+        font-size: 12px;
+        display: inline-block;
+        margin-bottom: 8px;
+    }
+
+    .name {
+        margin: 5px 0;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .info {
+        margin: 3px 0;
+        font-size: 14px;
+        color: #555;
+    }
+</style>
+
+<h2 style="margin:20px;">Collected Tasks</h2>
+
+{% for task in tasks %}
+<div class="card">
+    <div class="card-body">
+        <span class="status">COMPLETED</span>
+
+        <h3 class="name">Collector: {{ task.collector_name }}</h3>
+
+        <p class="info">📞 {{ task.collector_phone }}</p>
+        <p class="info">🚛 Vehicle No: {{ task.vehicle_no }}</p>
+        <p class="info">📍 Location: {{ task.location }}</p>
+        <p class="info">📝 {{ task.description }}</p>
+        <p class="info">⏰ {{ task.created_at }}</p>
+    </div>
+</div>
+{% else %}
+<p style="text-align:center;">No collected reports yet</p>
+{% endfor %}
+
+
+
+<!-- Bottom Navigation -->
+<div class="bottom-nav">
+    <div class="nav-item"><a href="{{ url_for('home') }}">Home</a></div>
+    <div class="nav-item"><a href="{{ url_for('my_tasks') }}">My Tasks</a></div>
+    <div class="nav-item nav-item-active"><a href="{{ url_for('collected') }}">Collected</a></div>
+    <div class="nav-item"><a href="{{ url_for('profile') }}">Profile</a></div>
+</div>
+
+{% endblock %}

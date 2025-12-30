@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Waste Management</title>
+    <link rel="icon" type="image/png" href="../static/images/logo.png">
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" />
+    <style>
+        /* Login Page CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    background: #F5F6D8;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+nav {
+    background: #FFFFFF;
+    padding: 15px 0;
+    border-bottom: 1px solid #E4EDE1;
+}
+
+.nav-bar {
+    width: 90%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo h2 {
+    color: #1ca949;
+    font-weight: 600;
+}
+
+.nav-signin .button {
+    font-size:16px;
+    font-weight:500;
+    padding: 8px 16px;
+    border-radius: 20px;
+    border: 1.5px solid #2E7D32;
+    background: transparent;
+    cursor: pointer;
+    color: #2E7D32;
+    margin-left: 10px;
+    transition: 0.3s ease;
+}
+
+.nav-signin .button:hover {
+    opacity: 1;
+    background-color:#2E7D32;
+    color:#fff;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+    padding: 40px 50px;
+}
+
+.hero-section {
+    flex: 1;
+    background: #E9F5D8;
+    padding: 60px;
+    border-radius: 16px;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-section h1 {
+    font-size: 42px;
+    font-weight: 600;
+    color: #1F4F2E;
+    margin-bottom: 10px;
+}
+
+.hero-section p {
+    font-size: 18px;
+    color: #2E7D32;
+    max-width: 450px;
+}
+
+.hero-section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(#d6e8c7 1px, transparent 1px),
+        linear-gradient(90deg, #d6e8c7 1px, transparent 1px);
+    background-size: 30px 30px;
+    opacity: 0.4;
+}
+
+.login-form {
+    width: 420px;
+    background: white;
+    padding: 40px 35px;
+    border-radius: 20px;
+    box-shadow: 0px 4px 20px rgba(0,0,0,0.08);
+}
+
+.login-form h1 {
+    font-size: 28px;
+    color: #1F4F2E;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.login-form p {
+    color: #4b4b4b;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+input {
+    width: 100%;
+    padding: 12px 18px;
+    border-radius: 12px;
+    border: 1px solid #E4EDE1;
+    background: #F9FFF6;
+    font-size: 15px;
+    outline: none;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px 16px 12px 45px;
+    background: #F7FFF4;
+    border-radius: 12px;
+    border: 1px solid #E4EDE1;
+    font-size: 15px;
+    outline: none;
+}
+.input-icon {
+    position: absolute;
+    top: 50%;
+    left: 14px;
+    transform: translateY(-50%);
+    color: #9bbb9b;    
+    font-size: 16px;
+}
+
+input:focus {
+    border-color: #2E7D32;
+    box-shadow: 0 0 5px rgba(46,125,50,0.3);
+}
+.input-icon i {
+  font-size:16px;
+  color:#abb8a7;
+}
+.account-type {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.account-type button {
+    flex: 1;
+    padding: 12px;
+    border-radius: 12px;
+    border: 1px solid #E4EDE1;
+    background: #F8FFF4;
+    cursor: pointer;
+    color: #1F4F2E;
+    font-weight: 500;
+    transition: 0.25s ease;
+}
+
+.account-type button.active {
+    background: #DDF5D8;
+    border-color: #2E7D32;
+    color: #2E7D32;
+}
+
+.account-type button:hover {
+    background: #EEF9E8;
+}
+
+.login-button,
+.create-button {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 12px;
+    background: #0E8A32;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: 0.3s;
+}
+
+.create-button:hover {
+    background: #0c722a;
+}
+
+.login-form a {
+    color: #0E8A32;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.login-form a:hover {
+    text-decoration: underline;
+}
+
+.login-form p{
+    margin-top:15px;
+}
+
+.login-form h5 {
+    margin-top: 25px;
+    margin-bottom: 10px;
+    font-size: 15px;
+    color: #1F4F2E;
+    font-weight: 600;
+}
+
+.accounts {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-top: 10px;
+}
+
+
+.account-button {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 25px;
+    border: 1px solid #A4D8A8; 
+    background: #E9F7EC;        
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    color: #1F4F2E;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    transition: 0.3s ease;
+}
+
+.account-button i {
+    font-size: 14px;
+    color: #1F4F2E;
+}
+
+.account-button:hover {
+    background: #D5F0DE; 
+    border-color: #7AC88A;
+}
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="nav-bar">
+            <div class="logo">
+                <h2><i class="fa-solid fa-recycle"></i>Smart Garbage System</h2>
+            </div>
+            <div class="nav-signin">
+               <button class="button" onclick="window.location.href='/login'">Login</button>
+              <button class="button" onclick="window.location.href='/register'">Sign Up</button>
+            </div>
+        </div>
+      </nav>
+    <main>
+        <div class="login-form">
+
+    <!-- SINGLE FORM -->
+    <form action="{{ url_for('login') }}" method="POST">
+
+        <h1>Welcome back</h1>
+        <p>Collector Login to Waste Management</p>
+
+        {% if error %}
+            <p style="color:red;">{{ error }}</p>
+        {% endif %}
+
+        <div class="form-group">
+            <input type="email"
+                   name="email"
+                   placeholder="Email"
+                   required>
+        </div>
+
+        <div class="form-group">
+            <input type="password"
+                   name="password"
+                   placeholder="Password"
+                   required>
+        </div>
+
+        <!-- NO onclick -->
+        <button type="submit" class="login-button">Login</button>
+        <p>Don't have an account?
+             <a href="/register">Sign Up</a>
+          </p>
+
+          </div>
+
+            </form>
+        </div>
+    </main>
+    <footer>
+
+    </footer>
+
+</body>
+
+</html>

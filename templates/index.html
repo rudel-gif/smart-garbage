@@ -1,0 +1,244 @@
+
+
+<head>
+    <meta charset="UTF-8">
+    <title>Collector Home</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+        }
+
+        nav {
+            background: #FFFFFF;
+            padding: 15px 0;
+            border-bottom: 1px solid #E4EDE1;
+        }
+
+        .nav-bar {
+            width: 90%;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo h2 {
+            color: #1ca949;
+            font-weight: 600;
+        }
+
+        .nav-signin .button {
+            font-size: 16px;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 20px;
+            border: 1.5px solid #2E7D32;
+            background: transparent;
+            cursor: pointer;
+            color: #2E7D32;
+            margin-left: 10px;
+            transition: 0.3s ease;
+        }
+
+        .nav-signin .button:hover {
+            opacity: 1;
+            background-color:#2E7D32;
+            color:#fff;
+        }
+
+        /* Header */
+        .header {
+            background:#4CAF50;
+            padding: 30px 20px 80px 20px;
+            color: white;
+            border-bottom-left-radius: 25px;
+            border-bottom-right-radius: 25px;
+        }
+
+        .welcome-text {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .name {
+            font-size: 26px;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+
+        .veh-number {
+            margin-top: 5px;
+            font-size: 15px;
+        }
+
+        /* Stats */
+        .stats-container {
+            display: flex;
+            justify-content: space-around;
+            margin-top: -40px;
+            padding: 0 10px;
+        }
+
+        .stat-card {
+            background: white;
+            width: 30%;
+            text-align: center;
+            padding: 20px 10px;
+            border-radius: 15px;
+            box-shadow: 0px 2px 6px rgba(0,0,0,0.15);
+        }
+
+        .stat-card h2 {
+            margin: 0;
+            font-size: 22px;
+        }
+
+        .stat-card p {
+            margin: 5px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .section-title {
+            font-size: 18px;
+            margin: 20px;
+        }
+
+        .action-card {
+            background:#C8E6C9;
+            padding: 18px;
+            margin: 0 20px 15px 20px;
+            border-radius: 15px;
+            box-shadow: 0px 2px 6px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .label {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .sub-label {
+            font-size: 13px;
+            color: #777;
+        }
+
+        .service-area {
+            background: white;
+            margin: 20px;
+            padding: 18px;
+            border-radius: 15px;
+            box-shadow: 0px 2px 6px rgba(0,0,0,0.1);
+        }
+
+        .area-name {
+            margin-top: 8px;
+            color: #15bc52;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background: white;
+            padding: 10px 0;
+            box-shadow: 0 -1px 5px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .nav-item {
+            text-align: center;
+            font-size: 12px;
+            color: #777;
+        }
+
+        .nav-item-active {
+            color: #15bc52;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div class="nav-bar">
+            <div class="logo">
+                <h2>Waste Management</h2>
+            </div>
+            <div class="nav-signin">
+                <button class="button"><a href="/login">Login</a></button>
+                <button class="button"><a href="/register">SignUp</a></button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <div class="header">
+     <div class="welcome-text">Welcome Back!</div>
+
+     <!-- Dynamic Name -->
+     <div class="name">{{ username }}</div>
+
+     <!-- Dynamic Vehicle Number -->
+     <div class="veh-number">🚛 {{ vehicle_no }}</div>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats-container">
+        <div class="stat-card">
+            <h2>0</h2>
+            <p>Total Collected</p>
+        </div>
+        <div class="stat-card">
+            <h2>0</h2>
+            <p>Pending Tasks</p>
+        </div>
+        <div class="stat-card">
+            <h2>0</h2>
+            <p>Completed</p>
+        </div>
+    </div>
+
+    <div class="section-title">Quick Actions</div>
+
+    <!-- View Tasks -->
+    <div class="action-card">
+        <div>
+            <div class="label">View Tasks</div>
+            <div class="sub-label">See all pending garbage reports</div>
+        </div>
+        <span>›</span>
+    </div>
+
+    <!-- Map View -->
+    <div class="action-card">
+        <div>
+            <div class="label">Map View</div>
+            <div class="sub-label">See all reports on map</div>
+        </div>
+        <span>›</span>
+    </div>
+
+    <!-- Service Area -->
+    <div class="service-area">
+        <div class="label">📍 Your Service Area</div>
+        <div class="area-name">Shree Nagar</div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav">
+       <div class="nav-item"><a href="index.html">Home</a></div>
+        <div class="nav-item"><a href="tasks.html">My_Tasks</a></div>
+        <div class="nav-item"><a href="collected.html">Map</a></div>
+        <div class="nav-item"><a href="profile.html">Profile</a></div>
+</body>
