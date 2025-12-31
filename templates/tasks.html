@@ -1,3 +1,5 @@
+{% extends "base.html" %}
+{% block body%}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -173,6 +175,8 @@
 
 
     <!-- TASK CARD -->
+
+ {% for task in tasks %}
 <div class="card">
     <div class="card-body">
         <span class="status">{{ task.status|upper }}</span>
@@ -185,21 +189,35 @@
             <button class="nav-btn">🧭 Navigate</button>
             <button class="call-btn">📞 Call</button>
         </div>
+
+        {% if task.status == 'pending' %}
             <form method="POST" action="{{ url_for('accept_task', task_id=task.id) }}">
                 <button class="accept-btn">✔ Accept Task</button>
             </form>
+        {% elif active_tab == 'mytasks' %}
             <form method="POST" action="{{ url_for('complete_task', task_id=task.id) }}">
                 <button class="accept-btn">✔ Mark as Collected</button>
             </form>
+        {% endif %}
     </div>
 </div>
+{% else %}
 <p style="text-align:center;margin-top:20px;">No tasks found</p>
+{% endfor %}
+
+
+    
+    
+
     <!-- BOTTOM NAVBAR -->
    <div class="bottom-nav">
-        <div class="nav-item"><a href="index.html">Home</a></div>
-        <div class="nav-item"><a href="tasks.html">My_Tasks</a></div>
-        <div class="nav-item"><a href="collected.html">Map</a></div>
-        <div class="nav-item"><a href="profile.html">Profile</a></div>
+        <div class="nav-item"><a href="\index">Home</a></div>
+        <div class="nav-item"><a href="\tasks">My_Tasks</a></div>
+        <div class="nav-item"><a href="\collected">Collected</a></div>
+        <div class="nav-item"><a href="\profile">Profile</a></div>
     </div>
 
 </body>
+
+
+{% endblock %}

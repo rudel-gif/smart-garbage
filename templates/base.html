@@ -1,75 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Flask Authentication</title>
-    <style>
-        nav {
-            background: #FFFFFF;
-            padding: 15px 20px;
-            border-bottom: 1px solid #E4EDE1;
-        }
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-        .nav-bar {
-            width: 90%;
-            margin: auto;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
+<title>Flask Authentication</title>
 
-        .logo h2 {
-            color: #1ca949;
-            font-weight: 600;
-        }
+<style>
+nav {
+    background: #FFFFFF;
+    padding: 15px 20px;
+    border-bottom: 1px solid #E4EDE1;
+}
 
-        /* Styled Link Button */
-        .button {
-            font-size: 16px;
-            font-weight: 500;
-            padding: 8px 16px;
-            border-radius: 20px;
-            border: 1.5px solid #2E7D32;
-            background: transparent;
-            cursor: pointer;
-            color: #2E7D32;
-            margin-left: 10px;
-            transition: 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-        }
+.nav-bar {
+    width: 90%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 
-        .button:hover {
-            background-color: #2E7D32;
-            color: #fff;
-        }
-    </style>
+.logo h2 {
+    color: #1ca949;
+    font-weight: 600;
+}
+
+.nav-signin .button {
+    font-size:16px;
+    font-weight:500;
+    padding: 8px 16px;
+    border-radius: 20px;
+    border: 1.5px solid #2E7D32;
+    background: transparent;
+    cursor: pointer;
+    color: #2E7D32;
+    margin-left: 10px;
+    transition: 0.3s ease;
+}
+
+.nav-signin .button a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.nav-signin .button:hover {
+    background-color:#2E7D32;
+    color:#fff;
+}
+</style>
 </head>
+
 <body>
+
 <header>
-    <nav>
-        <div class="nav-bar">
-            <div class="logo">
-                <h2>Waste Management</h2>
-            </div>
-
-            <div class="nav-signin">
-                <a class="button" href="{{ url_for('home') }}">Login</a>
-
-                <!-- Logout button only if user is logged in -->
-                {% if session.get('user') %}
-                <a class="button" href="{{ url_for('logout') }}">Logout</a>
-                {% endif %}
-            </div>
+<nav>
+    <div class="nav-bar">
+        <div class="logo">
+            <h2>Waste Management</h2>
         </div>
-    </nav>
-</header>
-<!-- Page content -->
-{% block body%}
 
-{% endblock %}
+        <div class="nav-signin">
+            {% if 'user_id' in session %}
+                <button class="button">
+                    <a href="{{ url_for('logout') }}">Logout</a>
+                </button>
+            {% else %}
+                <button class="button">
+                    <a href="{{ url_for('login') }}">Login</a>
+                </button>
+                <button class="button">
+                    <a href="{{ url_for('register') }}">Sign Up</a>
+                </button>
+            {% endif %}
+        </div>
+    </div>
+</nav>
+</header>
+
+{% block body %}{% endblock %}
 
 </body>
 </html>

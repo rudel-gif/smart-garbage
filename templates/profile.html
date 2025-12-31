@@ -1,5 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
+{% block body%}
+
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,7 +19,9 @@
         background: #ff6f42;
         padding: 18px;
         color: white;
-        font-size: 22px;
+        font-size: 30px;
+         border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
         font-weight: 600;
     }
 
@@ -25,14 +29,12 @@
     .profile-box {
         background: #ff6f42;
         text-align: center;
-        padding: 30px 0 50px;
-        border-bottom-left-radius: 35px;
-        border-bottom-right-radius: 35px;
+        padding: 0px 0 50px;
     }
 
     .profile-circle {
-        width: 95px;
-        height: 95px;
+        width: 100px;
+        height: 100px;
         background: #fff;
         color: #ff6f42;
         border-radius: 50%;
@@ -45,10 +47,13 @@
     }
 
     .name {
-        font-size: 26px;
-        color: white;
+        font-size: 30px;
+        color: #ff6f42;
         margin-top: 10px;
         font-weight: 600;
+        justify-content: center;
+        font-weight: bold;
+        text-align: center;
     }
 
     .tag {
@@ -57,7 +62,7 @@
         border-radius: 20px;
         color: white;
         display: inline-block;
-        margin-top: 5px;
+        margin-top: 20px;
         font-size: 14px;
     }
 
@@ -65,7 +70,8 @@
     .card {
         background: #fff;
         margin: -30px 20px 20px;
-        border-radius: 15px;
+        margin-bottom: 50px;
+        border-radius: 25px;
         padding: 20px;
         box-shadow: 0px 2px 8px rgba(0,0,0,0.15);
     }
@@ -105,7 +111,7 @@
 
     .stat-number {
         font-size: 28px;
-        color: #008cff;
+        color: #999;
         font-weight: bold;
     }
 
@@ -124,15 +130,12 @@
     }
 
     .nav-item {
-        font-size: 12px;
+        font-size: 20px;
         color: #999;
         text-align: center;
     }
 
-    .active {
-        color: #ff6f42;
-        font-weight: bold;
-    }
+    
 </style>
 
 </head>
@@ -142,20 +145,22 @@
 <div class="header">Profile</div>
 
 <!-- Orange Profile Area -->
-<div class="profile-box">
-    <div class="profile-circle">V</div>
-    <div class="name">Vaibhav</div>
-    <div class="tag">Collector Account</div>
+<div class="profile-circle">
+    {{ collector.name[0] }}
+</div>
+<div class="name">{{ collector.name }}</div>
+<div class="tag">Collector Account</div>
 </div>
 
 <!-- Contact Information Card -->
 <div class="card">
     <div class="card-title">Contact Information</div>
 
-    <div class="info"><span>📞</span> 7894561230</div>
-    <div class="info"><span>✉️</span> vaibhav@gmail.com</div>
-    <div class="info"><span>🚛</span> MH26BM1234</div>
-    <div class="info"><span>📍</span> Shree Nagar</div>
+    <div class="info"><span>📞</span> {{ collector.phone }}</div>
+<div class="info"><span>✉️</span> {{ collector.email }}</div>
+<div class="info"><span>🚛</span> {{ collector.vehicle_no }}</div>
+<div class="info"><span>📍</span> {{ collector.area }}</div>
+
 </div>
 
 <!-- Performance Statistics -->
@@ -164,25 +169,31 @@
 
     <div class="stats-box">
         <div class="stat">
-            <div class="stat-number">0</div>
+            <div class="stat-number">{{ stats.accepted_tasks or 0 }}</div>
             <div>Total Collected</div>
         </div>
         <div class="stat">
-            <div class="stat-number">0</div>
+            <div class="stat-number">{{ stats.pending_tasks or 0 }}</div>
             <div>Pending Tasks</div>
         </div>
         <div class="stat">
-            <div class="stat-number">0</div>
+            <div class="stat-number">{{ stats.completed_tasks or 0 }}</div>
             <div>Completed</div>
         </div>
     </div>
 </div>
+
 <!-- Bottom Navigation -->
 <div class="bottom-nav">
-        <div class="nav-item"><a href="index.html">Home</a></div>
-        <div class="nav-item"><a href="tasks.html">My_Tasks</a></div>
-        <div class="nav-item"><a href="collected.html">Map</a></div>
-        <div class="nav-item"><a href="profile.html">Profile</a></div>
+        <div class="nav-item"><a href="\index">Home</a></div>
+        <div class="nav-item"><a href="\tasks">My_Tasks</a></div>
+        <div class="nav-item"><a href="\collected">Collected</a></div>
+        <div class="nav-item"><a href="\profile">Profile</a></div>
     </div>
+   
+
 </body>
-</html>
+
+
+
+{% endblock %}

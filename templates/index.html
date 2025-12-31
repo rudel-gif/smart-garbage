@@ -1,244 +1,340 @@
+{% extends "base.html" %}
+{% block body%}
 
 
-<head>
-    <meta charset="UTF-8">
-    <title>Collector Home</title>
+<title>Collector Home</title>
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #f5f5f5;
+    }
+ nav {
+    background: #FFFFFF;
+    padding: 15px 0;
+    border-bottom: 1px solid #E4EDE1;
+}
 
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #f5f5f5;
+.nav-bar {
+    width: 90%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo h2 {
+    color: #1ca949;
+    font-weight: 600;
+}
+
+.nav-signin .button {
+    font-size:16px;
+    font-weight:500;
+    padding: 8px 16px;
+    border-radius: 20px;
+    border: 1.5px solid #2E7D32;
+    background: transparent;
+    cursor: pointer;
+    color: #2E7D32;
+    margin-left: 10px;
+    transition: 0.3s ease;
+}
+
+.nav-signin .button:hover {
+    opacity: 1;
+    background-color:#2E7D32;
+    color:#fff;
+}
+    /* Header */
+    .header {
+        background:#4CAF50;
+        padding: 30px 20px 80px 20px;
+        color: white;
+        border-bottom-left-radius: 25px;
+        border-bottom-right-radius: 25px;
+    }
+
+    .welcome-text {
+        font-size: 20px;
+        opacity: 0.9;
+    }
+
+    .name {
+        font-size: 50px;
+        font-weight: bold;
+        margin-top: 5px;
+    }
+
+    .veh-number {
+        margin-top: 5px;
+        font-size: 15px;
+    }
+
+    /* Stats Containers */
+    .stats-container {
+        display: flex;
+        justify-content: space-around;
+        margin-top: -40px;
+        padding: 0 10px;
+    }
+
+    .stat-card {
+        background: white;
+        width: 30%;
+        text-align: center;
+        padding: 20px 10px;
+        border-radius: 15px;
+        box-shadow: 0px 2px 6px rgba(0,0,0,0.15);
+    }
+
+    .stat-card h2 {
+        margin: 0;
+        font-size: 22px;
+    }
+
+    .stat-card p {
+        margin: 5px;
+        font-size: 14px;
+        color: #555;
+    }
+     /* Task card */
+        .card {
+            background: white;
+            border-radius: 10px;
+            margin: 15px;
+            overflow: hidden;
+            box-shadow: 0 2px 6px #aaa;
         }
 
-        nav {
-            background: #FFFFFF;
-            padding: 15px 0;
-            border-bottom: 1px solid #E4EDE1;
+        .task-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
         }
 
-        .nav-bar {
-            width: 90%;
-            margin: auto;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+        .card-body {
+            padding: 12px;
         }
 
-        .logo h2 {
-            color: #1ca949;
-            font-weight: 600;
-        }
-
-        .nav-signin .button {
-            font-size: 16px;
-            font-weight: 500;
-            padding: 8px 16px;
-            border-radius: 20px;
-            border: 1.5px solid #2E7D32;
-            background: transparent;
-            cursor: pointer;
-            color: #2E7D32;
-            margin-left: 10px;
-            transition: 0.3s ease;
-        }
-
-        .nav-signin .button:hover {
-            opacity: 1;
-            background-color:#2E7D32;
-            color:#fff;
-        }
-
-        /* Header */
-        .header {
-            background:#4CAF50;
-            padding: 30px 20px 80px 20px;
+        .status {
+            background: #ffb74d;
             color: white;
-            border-bottom-left-radius: 25px;
-            border-bottom-right-radius: 25px;
-        }
-
-        .welcome-text {
-            font-size: 14px;
-            opacity: 0.9;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            display: inline-block;
+            margin-bottom: 8px;
         }
 
         .name {
-            font-size: 26px;
-            font-weight: bold;
-            margin-top: 5px;
+            margin: 5px 0;
+            font-size: 18px;
         }
 
-        .veh-number {
-            margin-top: 5px;
-            font-size: 15px;
-        }
-
-        /* Stats */
-        .stats-container {
-            display: flex;
-            justify-content: space-around;
-            margin-top: -40px;
-            padding: 0 10px;
-        }
-
-        .stat-card {
-            background: white;
-            width: 30%;
-            text-align: center;
-            padding: 20px 10px;
-            border-radius: 15px;
-            box-shadow: 0px 2px 6px rgba(0,0,0,0.15);
-        }
-
-        .stat-card h2 {
-            margin: 0;
-            font-size: 22px;
-        }
-
-        .stat-card p {
-            margin: 5px;
+        .info {
+            margin: 3px 0;
             font-size: 14px;
             color: #555;
         }
 
-        .section-title {
-            font-size: 18px;
-            margin: 20px;
-        }
-
-        .action-card {
-            background:#C8E6C9;
-            padding: 18px;
-            margin: 0 20px 15px 20px;
-            border-radius: 15px;
-            box-shadow: 0px 2px 6px rgba(0,0,0,0.1);
+        .btn-row {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
+            margin-top: 10px;
         }
 
-        .label {
-            font-size: 16px;
-            font-weight: bold;
-        }
-
-        .sub-label {
-            font-size: 13px;
-            color: #777;
-        }
-
-        .service-area {
-            background: white;
-            margin: 20px;
-            padding: 18px;
-            border-radius: 15px;
-            box-shadow: 0px 2px 6px rgba(0,0,0,0.1);
-        }
-
-        .area-name {
-            margin-top: 8px;
-            color: #15bc52;
-            font-size: 16px;
-            font-weight: bold;
-        }
-
-        .bottom-nav {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            background: white;
+        .btn-row button {
+            flex: 1;
+            margin: 0 5px;
             padding: 10px 0;
-            box-shadow: 0 -1px 5px rgba(0,0,0,0.1);
-            display: flex;
-            justify-content: space-around;
-        }
-
-        .nav-item {
-            text-align: center;
-            font-size: 12px;
-            color: #777;
-        }
-
-        .nav-item-active {
-            color: #15bc52;
+            border: none;
+            border-radius: 8px;
+            color: white;
             font-weight: bold;
+            cursor: pointer;
+            font-size: 14px;
         }
-    </style>
-</head>
 
-<body>
+        .nav-btn { background: #42a5f5; }
+        .call-btn { background: #66bb6a; }
 
-    <nav>
-        <div class="nav-bar">
-            <div class="logo">
-                <h2>Waste Management</h2>
+        .accept-btn {
+            background: #ff7043;
+            color: white;
+            border: none;
+            padding: 12px;
+            width: 100%;
+            border-radius: 8px;
+            font-weight: bold;
+            margin-top: 10px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+    /* Quick Actions */
+    .section-title {
+        font-size: 18px;
+        margin: 20px;
+    }
+
+    .action-card {
+        background:#C8E6C9;
+        padding: 18px;
+        margin: 0 20px 15px 20px;
+        border-radius: 15px;
+        box-shadow: 0px 2px 6px rgba(0,0,0,0.1);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+    }
+
+    .label {
+        font-size: 25px;
+        font-weight: bold;
+    }
+
+    .sub-label {
+        font-size: 16px;
+        color: #777;
+    }
+
+    /* Service Area */
+    .service-area {
+        background: white;
+        margin: 20px;
+        padding: 18px;
+        border-radius: 15px;
+        box-shadow: 0px 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .area-name {
+        margin-top: 8px;
+        color: #15bc52;
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    /* Bottom Navigation */
+    .bottom-nav {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        background: white;
+        padding: 10px 0;
+        box-shadow: 0 -1px 5px rgba(0,0,0,0.1);
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .nav-item {
+        text-align: center;
+        font-size: 22px;
+        color: #777;
+    }
+
+    .nav-item-active {
+        color: #15bc52;
+        font-weight: bold;
+    }
+</style>
+
+<!-- Header -->
+<div class="header">
+    <div class="welcome-text">Welcome</div>
+    <div class="name">{{username}}</div>
+    <div class="veh-number">{{vehicle_no}}</div>
+</div>
+
+<!-- Stats -->
+<div class="stats-container">
+    <div class="stat-card">
+       <h2>{{ total_collected }}</h2>
+       <div class="section-title">Total Collected</div>
+    </div>
+    <div class="stat-card">
+        <h2>{{ pending_count }}</h2>
+        <div class="section-title">Pending Tasks</div>
+    </div>
+    <div class="stat-card">
+       <h2>{{ completed_count }}</h2>
+        <div class="section-title">Completed Tasks</div>
+    </div>
+</div>
+
+{% for task in pending_tasks %}
+<div class="card">
+    <div class="card-body">
+        <span class="status">PENDING</span>
+        <h3 class="name">{{ task.name }}</h3>
+        <p class="info">📞 {{ task.phone }}</p>
+        <p class="info">📍 {{ task.location }}</p>
+        <p class="info">⏰ {{ task.created_at }}</p>
+         <div class="btn-row">
+                <button class="nav-btn">🧭 Navigate</button>
+                <button class="call-btn">📞 Call</button>
             </div>
-            <div class="nav-signin">
-                <button class="button"><a href="/login">Login</a></button>
-                <button class="button"><a href="/register">SignUp</a></button>
+        <form method="POST" action="{{ url_for('accept_task', task_id=task.id) }}">
+            <button type="submit" class="accept-btn">✓ Accept Task</button>
+        </form>
+    </div>
+</div>
+{% else %}
+<p style="text-align:center;">No pending tasks</p>
+{% endfor %}
+
+
+  <!-- Tasks Container -->
+    <div class="card">
+        <img src="https://via.placeholder.com/600x250" class="task-img">
+        <div class="card-body">
+            <span class="status">PENDING</span>
+            <h3 class="name">Sampada</h3>
+            <p class="info">📞 9999999999</p>
+            <p class="info">📍 37.421998, -122.084000</p>
+            <p class="info">⏰ 11/15/2025, 10:47:54 PM</p>
+
+            <div class="btn-row">
+                <button class="nav-btn">🧭 Navigate</button>
+                <button class="call-btn">📞 Call</button>
             </div>
-        </div>
-    </nav>
 
-    <!-- Header -->
-    <div class="header">
-     <div class="welcome-text">Welcome Back!</div>
-
-     <!-- Dynamic Name -->
-     <div class="name">{{ username }}</div>
-
-     <!-- Dynamic Vehicle Number -->
-     <div class="veh-number">🚛 {{ vehicle_no }}</div>
-    </div>
-
-    <!-- Stats -->
-    <div class="stats-container">
-        <div class="stat-card">
-            <h2>0</h2>
-            <p>Total Collected</p>
-        </div>
-        <div class="stat-card">
-            <h2>0</h2>
-            <p>Pending Tasks</p>
-        </div>
-        <div class="stat-card">
-            <h2>0</h2>
-            <p>Completed</p>
+             <a href="/accept/185"><button class="accept-btn">✔ Accept Task</button></a>
         </div>
     </div>
 
-    <div class="section-title">Quick Actions</div>
+    <div class="card">
+        <img src="https://via.placeholder.com/600x250" class="task-img">
+        <div class="card-body">
+            <span class="status">PENDING</span>
+            <h3 class="name">Rohan</h3>
+            <p class="info">📞 8888888888</p>
+            <p class="info">📍 28.7041, 77.1025</p>
+            <p class="info">⏰ 11/16/2025, 09:30:00 AM</p>
 
-    <!-- View Tasks -->
-    <div class="action-card">
-        <div>
-            <div class="label">View Tasks</div>
-            <div class="sub-label">See all pending garbage reports</div>
+            <div class="btn-row">
+                <button class="nav-btn">🧭 Navigate</button>
+                <button class="call-btn">📞 Call</button>
+            </div>
+            <a href="/accept/185"><button class="accept-btn">✔ Accept Task</button></a>
         </div>
-        <span>›</span>
     </div>
 
-    <!-- Map View -->
-    <div class="action-card">
-        <div>
-            <div class="label">Map View</div>
-            <div class="sub-label">See all reports on map</div>
-        </div>
-        <span>›</span>
-    </div>
+<!-- Service Area -->
+<div class="service-area">
+    <div class="label">📍 Your Service Area</div>
+    <div class="area-name">Shree Nagar</div>
+</div>
 
-    <!-- Service Area -->
-    <div class="service-area">
-        <div class="label">📍 Your Service Area</div>
-        <div class="area-name">Shree Nagar</div>
+<!-- Bottom Navigation -->
+<div class="bottom-nav">
+        <div class="nav-item"><a href="\index">Home</a></div>
+        <div class="nav-item"><a href="\tasks">My_Tasks</a></div>
+        <div class="nav-item"><a href="\collected">Collected</a></div>
+        <div class="nav-item"><a href="\profile">Profile</a></div>
     </div>
+   
 
-    <!-- Bottom Navigation -->
-    <div class="bottom-nav">
-       <div class="nav-item"><a href="index.html">Home</a></div>
-        <div class="nav-item"><a href="tasks.html">My_Tasks</a></div>
-        <div class="nav-item"><a href="collected.html">Map</a></div>
-        <div class="nav-item"><a href="profile.html">Profile</a></div>
-</body>
+
+{% endblock %}
